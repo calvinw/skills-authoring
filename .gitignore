@@ -1,0 +1,8 @@
+# Skillshare synced targets - generated from .skillshare/skills/
+# Run scripts/sync-skills.sh to populate locally
+.agents/skills/
+.claude/skills/
+.crush/skills/
+.gemini/skills/
+.github/skills/
+.opencode/skills/
