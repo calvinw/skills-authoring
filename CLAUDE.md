@@ -1,30 +1,30 @@
-# dolt-db-skills
+# skills-authoring
 
-This repo is for working on skills that manage the **BusMgmtBenchmarks** Dolt database — a financial data project tracking retail company financials from SEC 10-K filings and Yahoo Finance.
+This repo is a skills authoring environment with a collection of pre-installed skills for use with AI agents (Claude, OpenCode).
 
 Skills are slash commands available through agent execution.
 
 ## Available Skills
 
-- `/analyze-financials TICKER YEAR` — Fetches financials from SEC, Yahoo Finance, and the Dolt DB, compares them side by side, detects anomalies, and produces reconciled DB-ready values. Saves a report to `reports/`.
-- `/insert-financials TICKER YEAR` — Generates a `REPLACE INTO` SQL file from the reconciled values produced by `/analyze-financials`. Writes to `extract/2026/inserts/`. Does NOT write to the database directly.
-
-Always run `/analyze-financials` before `/insert-financials` in the same session.
-
-## MCP Servers
-
-The following MCP servers are pre-installed and available:
-
-```
-dolt=https://bus-mgmt-databases.mcp.mathplosion.com/mcp-dolt-database/sse
-sec-10ks=https://bus-mgmt-databases.mcp.mathplosion.com/mcp-sec-10ks/sse
-yfinance-10ks=https://bus-mgmt-databases.mcp.mathplosion.com/mcp-yfinance-10ks/sse
-```
-
-Check available MCPs with `/mcp` in your agent.
-
-The target database is `calvinw/BusMgmtBenchmarks/main`.
+- **algorithmic-art** — Create generative/algorithmic art using p5.js with seeded randomness and interactive parameter exploration.
+- **brand-guidelines** — Apply Anthropic's official brand colors and typography to artifacts.
+- **canvas-design** — Create visual art and designs as .png or .pdf documents.
+- **doc-coauthoring** — Structured workflow for co-authoring documentation, proposals, and specs.
+- **docx** — Create, read, edit, and manipulate Word (.docx) documents.
+- **frontend-design** — Build production-grade frontend interfaces (websites, dashboards, React components).
+- **hello-world** — Simple greeting skill. Triggered by `/hello-world NAME`.
+- **internal-comms** — Write internal communications (status reports, newsletters, incident reports, etc.).
+- **mcp-builder** — Guide for creating MCP (Model Context Protocol) servers in Python or TypeScript.
+- **pdf** — Read, create, merge, split, and manipulate PDF files.
+- **pptx** — Create, read, edit, and manipulate PowerPoint (.pptx) presentations.
+- **skill-creator** — Create new skills, improve existing ones, and run evals to measure performance.
+- **slack-gif-creator** — Create animated GIFs optimized for Slack.
+- **template** — Template for authoring new skills.
+- **theme-factory** — Apply pre-set or custom themes to artifacts (slides, docs, HTML pages).
+- **web-artifacts-builder** — Build elaborate multi-component HTML artifacts using React, Tailwind, and shadcn/ui.
+- **webapp-testing** — Test local web applications using Playwright (screenshots, logs, UI verification).
+- **xlsx** — Create, read, edit, and manipulate spreadsheet (.xlsx, .csv) files.
 
 ## Setup
 
-The environment is automatically set up on container creation. Skills are pre-installed and ready to use through agent execution with `claude.sh` or `opencode.sh`.
+The environment is automatically set up on container creation. Skills are pre-installed as symlinks from the skillshare registry and are ready to use through agent execution with `claude.sh` or `opencode.sh`.
