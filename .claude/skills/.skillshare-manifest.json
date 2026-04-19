@@ -1,23 +1,4 @@
 {
-  "managed": {
-    "algorithmic-art": "symlink",
-    "brand-guidelines": "symlink",
-    "canvas-design": "symlink",
-    "doc-coauthoring": "symlink",
-    "docx": "symlink",
-    "frontend-design": "symlink",
-    "hello-world": "symlink",
-    "internal-comms": "symlink",
-    "mcp-builder": "symlink",
-    "pdf": "symlink",
-    "pptx": "symlink",
-    "skill-creator": "symlink",
-    "slack-gif-creator": "symlink",
-    "template": "symlink",
-    "theme-factory": "symlink",
-    "web-artifacts-builder": "symlink",
-    "webapp-testing": "symlink",
-    "xlsx": "symlink"
-  },
-  "updated_at": "2026-04-19T22:30:26.963676469Z"
+  "managed": {},
+  "updated_at": "2026-04-19T22:35:15.093879463Z"
 }
