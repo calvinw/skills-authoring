@@ -1,4 +1,11 @@
 {
   "image": "ghcr.io/calvinw/ai-course-devcontainer:latest",
-  "postCreateCommand": "setup-env.sh && install-mcps.sh && setup-skills.sh && sync-skills.sh || true"
+  "postCreateCommand": "setup-env.sh && install-mcps.sh && setup-skills.sh && sync-skills.sh || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "cweijan.vscode-office"
+      ]
+    }
+  }
 }
