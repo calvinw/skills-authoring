@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/runkids/skillshare/main/schemas/project-config.schema.json
+targets:
+  - claude
+  - copilot
+  - gemini
+  - opencode
+  - crush
+  - codex
+audit:
+  block_threshold: CRITICAL
