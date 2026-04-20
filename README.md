@@ -35,6 +35,8 @@ The environment is automatically set up on container creation. Skills are pre-in
 
 All skill authoring happens in `.skillshare/skills/`. Never edit files directly in agent config directories (`.claude/`, `.opencode/`, `.agents/`, etc.) — those are managed automatically by `skillshare sync`.
 
+> **Tip:** You can ask the AI agent (Claude or OpenCode) to run any of these commands for you. For example: *"Create a new skill called my-skill, sync it, then commit and push."*
+
 ### Create a new skill
 
 ```bash
