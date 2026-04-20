@@ -33,6 +33,16 @@ The environment is automatically set up on container creation. Skills are pre-in
 
 **IMPORTANT:** All skill files live in `.skillshare/skills/`. Never create or edit skill files directly in agent config directories such as `.claude/skills/`, `.opencode/skills/`, `.agents/skills/`, or any other agent-specific folder. Those directories are sync targets managed automatically by `skillshare sync`. Any manual edits there will be overwritten.
 
+## Running Commands for the User
+
+Users will often ask you to manage skills on their behalf using natural language, such as:
+
+- *"Create a new skill for me called my-skill."*
+- *"Sync my edits for my-skill."*
+- *"Remove the skill my-skill."*
+
+When you receive requests like these, run the appropriate `skillshare` commands below on their behalf. Do not ask the user to run commands themselves unless something goes wrong.
+
 ## Working with Skills
 
 ### Create a new skill
