@@ -4,7 +4,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "cweijan.vscode-office"
+        "cweijan.vscode-office",
+        "astx-jp.vscode-pptx-viewer"
       ]
     }
   }
