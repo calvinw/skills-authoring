@@ -71,7 +71,5 @@ skillshare sync
 ### Commit and push
 
 ```bash
-skillshare push
-# or manually:
 git add -A && git commit -m "..." && git push
 ```
