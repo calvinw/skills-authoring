@@ -35,24 +35,26 @@ The environment is automatically set up on container creation. Skills are pre-in
 
 All skill authoring happens in `.skillshare/skills/`. Never edit files directly in agent config directories (`.claude/`, `.opencode/`, `.agents/`, etc.) — those are managed automatically by `skillshare sync`.
 
-You can have the LLM run these commands for you, or run them yourself.
-
 ### Create a new skill
+
+Say to the LLM: *"Create a new skill for me called my-skill."* The LLM will run the following commands, which scaffold a new skill template in `.skillshare/skills/my-skill/SKILL.md` and sync it to all agent targets:
 
 ```bash
 skillshare new my-skill --project
-# Edit .skillshare/skills/my-skill/SKILL.md
 skillshare sync
 ```
 
 ### Edit an existing skill
 
+Edit `.skillshare/skills/my-skill/SKILL.md` directly, then say to the LLM: *"Sync my edits for my-skill."* The LLM will run the following command, which propagates your changes to all agent targets:
+
 ```bash
-# Edit .skillshare/skills/my-skill/SKILL.md
 skillshare sync
 ```
 
 ### Remove a skill
+
+Say to the LLM: *"Remove the skill my-skill."* The LLM will run the following commands, which uninstall the skill and re-sync all remaining skills across agent targets:
 
 ```bash
 skillshare uninstall my-skill
