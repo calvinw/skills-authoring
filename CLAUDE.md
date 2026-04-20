@@ -28,3 +28,50 @@ Skills are slash commands available through agent execution.
 ## Setup
 
 The environment is automatically set up on container creation. Skills are pre-installed as symlinks from the skillshare registry and are ready to use through agent execution with `claude.sh` or `opencode.sh`.
+
+## Skill Authoring Rules
+
+**IMPORTANT:** All skill files live in `.skillshare/skills/`. Never create or edit skill files directly in agent config directories such as `.claude/skills/`, `.opencode/skills/`, `.agents/skills/`, or any other agent-specific folder. Those directories are sync targets managed automatically by `skillshare sync`. Any manual edits there will be overwritten.
+
+## Working with Skills
+
+### Create a new skill
+
+```bash
+# Scaffold a new skill in the project source directory
+skillshare new my-skill --project
+
+# Edit the generated template
+# File: .skillshare/skills/my-skill/SKILL.md
+
+# Sync to all agent targets
+skillshare sync
+```
+
+### Edit an existing skill
+
+```bash
+# Edit only the source file
+# File: .skillshare/skills/my-skill/SKILL.md
+
+# Re-sync to propagate changes to all agents
+skillshare sync
+```
+
+### Remove a skill
+
+```bash
+# Uninstall (moves to trash, does not permanently delete immediately)
+skillshare uninstall my-skill
+
+# Sync to remove from all agent targets
+skillshare sync
+```
+
+### Commit and push
+
+```bash
+skillshare push
+# or manually:
+git add -A && git commit -m "..." && git push
+```
