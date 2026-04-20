@@ -1,59 +1,69 @@
-# dolt-db-skills
+# skills-authoring
 
-This repo is for working on skills that manage the **BusMgmtBenchmarks** Dolt database — a financial data project tracking retail company financials from SEC 10-K filings and Yahoo Finance.
+This repo is a skills authoring environment with a collection of pre-installed skills for use with AI agents (Claude, OpenCode).
 
-Skills are slash commands (e.g., `/analyze-financials`) available through AI tool agents.
+Skills are slash commands available through agent execution with `claude.sh` or `opencode.sh`.
 
 ## Available Skills
 
-### `/analyze-financials TICKER YEAR`
+| Skill | Description |
+|-------|-------------|
+| **algorithmic-art** | Create generative/algorithmic art using p5.js with seeded randomness and interactive parameter exploration. |
+| **brand-guidelines** | Apply Anthropic's official brand colors and typography to artifacts. |
+| **canvas-design** | Create visual art and designs as .png or .pdf documents. |
+| **doc-coauthoring** | Structured workflow for co-authoring documentation, proposals, and specs. |
+| **docx** | Create, read, edit, and manipulate Word (.docx) documents. |
+| **frontend-design** | Build production-grade frontend interfaces (websites, dashboards, React components). |
+| **hello-world** | Simple greeting skill. Triggered by `/hello-world NAME`. |
+| **internal-comms** | Write internal communications (status reports, newsletters, incident reports, etc.). |
+| **mcp-builder** | Guide for creating MCP (Model Context Protocol) servers in Python or TypeScript. |
+| **pdf** | Read, create, merge, split, and manipulate PDF files. |
+| **pptx** | Create, read, edit, and manipulate PowerPoint (.pptx) presentations. |
+| **skill-creator** | Create new skills, improve existing ones, and run evals to measure performance. |
+| **slack-gif-creator** | Create animated GIFs optimized for Slack. |
+| **template** | Template for authoring new skills. |
+| **theme-factory** | Apply pre-set or custom themes to artifacts (slides, docs, HTML pages). |
+| **web-artifacts-builder** | Build elaborate multi-component HTML artifacts using React, Tailwind, and shadcn/ui. |
+| **webapp-testing** | Test local web applications using Playwright (screenshots, logs, UI verification). |
+| **xlsx** | Create, read, edit, and manipulate spreadsheet (.xlsx, .csv) files. |
 
-**Purpose:** Fetch, compare, and reconcile financial data for a retail company across multiple sources (SEC 10-K, Yahoo Finance, and Dolt DB), then produce database-ready reconciled values.
+## Creating and Editing Skills
 
-**What it does:**
-1. Looks up company metadata (CIK, display name) in the Dolt database
-2. Fetches income statements and balance sheets from SEC 10-K filings and Yahoo Finance in parallel
-3. Extracts 13 standard financial fields (Revenue, COGS, Gross Margin, SGA, Operating Profit, Net Profit, Inventory, Current Assets, Total Assets, Current Liabilities, Liabilities, Total Shareholder Equity, Total Liabilities & SE)
-4. Runs automated anomaly detection (SGA composite rules, balance sheet mismatches, restatement checks)
-5. Presents a side-by-side comparison table showing differences across sources
-6. Recommends reconciled values with source attribution
-7. Generates and saves a markdown report to `reports/{TICKER}-{YEAR}.md`
+Skills live in `.skillshare/skills/`. Always edit them there — never directly in other config directories, as those are targets that get overwritten on sync.
 
-**Usage:** `/analyze-financials TRR 2024`
-
-### `/insert-financials TICKER YEAR`
-
-**Purpose:** Generate a SQL `REPLACE INTO` file containing reconciled financial data from `/analyze-financials`. This skill does NOT connect to or modify the database — it writes a `.sql` file that you apply manually.
-
-**What it does:**
-1. Collects reconciled values and metadata from the prior `/analyze-financials` run
-2. Constructs a `REPLACE INTO financials` SQL statement with all 13 fields
-3. Writes the SQL to `extract/2026/inserts/{TICKER}_{YEAR}_insert.sql`
-4. Provides instructions for applying the SQL to your local Dolt clone
-
-**Usage:** `/insert-financials TRR 2024` (after running `/analyze-financials TRR 2024` in the same session)
-
-**Workflow:** Always run `/analyze-financials` first, review the analysis and reconciled values, then run `/insert-financials` to generate the insert file.
-
-## Starting Agents
-
-Start an AI agent with permissive tool access using:
+### Create a new skill
 
 ```bash
-claude.sh      # Starts Claude agent
-opencode.sh    # Starts OpenCode agent
+skillshare new <skill-name>
 ```
 
-These scripts invoke the agent with access to Dolt database tools, financial data tools (SEC 10-K, Yahoo Finance), and the installed skills for analyzing and reconciling financial data.
+This scaffolds a new skill directory under `.skillshare/skills/<skill-name>/` with a `SKILL.md` template. Edit that file to define the skill's trigger, instructions, and behavior.
 
-## MCP Servers
+### Edit an existing skill
 
-The Dolt MCP server is configured in `configs/mcp-servers.conf`:
+Open `.skillshare/skills/<skill-name>/SKILL.md` and make your changes.
 
+### Sync to all agent configs
+
+After creating or editing any skill, sync it to all targets (Claude, OpenCode, etc.):
+
+```bash
+skillshare sync
 ```
-dolt=https://bus-mgmt-databases.mcp.mathplosion.com/mcp-dolt-database/sse
-sec-10ks=https://bus-mgmt-databases.mcp.mathplosion.com/mcp-sec-10ks/sse
-yfinance-10ks=https://bus-mgmt-databases.mcp.mathplosion.com/mcp-yfinance-10ks/sse
+
+To check what's out of sync before committing:
+
+```bash
+skillshare diff
 ```
 
-Target database: `calvinw/BusMgmtBenchmarks/main`
+### Workflow summary
+
+1. `skillshare new <name>` — scaffold (or just edit `.skillshare/skills/<name>/SKILL.md`)
+2. Edit the skill in `.skillshare/skills/`
+3. `skillshare sync` — push to all target configs
+4. Test via the agent: `claude.sh` or `opencode.sh`
+
+## Setup
+
+The environment is automatically set up on container creation. Skills are pre-installed as symlinks from the skillshare registry and are ready to use through agent execution with `claude.sh` or `opencode.sh`.
